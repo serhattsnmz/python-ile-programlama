@@ -1,0 +1,26 @@
+# Python ile Programlamaya Giriş
+
+- Python hakkında genel bilgi
+    - Karmaşık olmayan kod yazımı
+    - Öğreniminin kolay olması
+    - Dinamik veri yapısı
+    - Nesne tabanlı programlamaya elverişli yapısı
+    - Geliştirici desteğinin çok fazla olması ve geniş kütüphane desteği
+- Python nerelerde kullanılır:
+    - Web Geliştirme (Flask, Falcon, Django)
+    - Masaüstü geliştirme (PyQt, Tkinter)
+    - Mobil Geliştirme (Kiwi)
+    - Machine Learning (Tensor Flow, Keras, NumPy, Pandas)
+    - Data Scraping & Web Crawling (BeautifulSoup, Requests-HTML)
+- Python 3 kurulumu
+- Python geliştirme ortamları
+    - Konsol üzerinden kullanım
+    - PtPython
+    - Visual Studio Code
+    - Jupyter Notebook - Anaconda
+    - PyCharm
+- Örnek bir python dosyası oluşturma ve çalıştırma
+- Pip kurulumu ve kullanımı
+- VirualEnv kurulumu ve kullanımı
+- Debugging
+- PEP8 Kuralları 

@@ -1,0 +1,2 @@
+# Koleksiyon Veri Tipleri - Dictionaries
+
