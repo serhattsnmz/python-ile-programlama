@@ -211,3 +211,69 @@ TypeError: 'str' object does not support item assignment
 - `a.pop(index=-1)`         : Listenin içinden verilen index numarasındaki elemanı kaldırır. 
     - İndex verilmezse son öğreyi kaldırır.
     - Eğer boş listeden eleman kaldırılmak istenirse veya olmayan index verilirse, IndexError hatası verir.
+
+- Listeleri sıralama
+    - Listenin elemanları int ise küçükten büyüğe doğru sıralanır.
+    - Listenin elemanları string ise, alfabetik olarak sıralanır.
+    - Listelerin sıralanması için içindeki değerlerin aynı veri tipinde olması gerekmektedir.
+
+```python
+>>> l = [2,3,1,7,0,5]
+
+>>> l.sort()
+>>> l
+[0, 1, 2, 3, 5, 7]
+
+>>> l.sort(reverse=True)
+>>> l
+[7, 5, 3, 2, 1, 0]
+
+>>> l = ["python", "Python", "C", "Java"]
+
+>>> l.sort()
+>>> l
+['C', 'Java', 'Python', 'python']
+
+>>> l = [True, False]
+
+>>> l.sort()
+>>> l
+[False, True]
+
+>>> l = [int, float, str]
+
+>>> l.sort()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: '<' not supported between instances of 'type' and 'type'
+
+'<' not supported between instances of 'type' and 'type'
+```
+
+- `l.index(<obj>)`  : Verilen ifadenin ilk yerinin index numarasını döndürür. Bulamazsa ValueError döner.
+
+```python
+>>> l = [1,2,3,3,4,4,4]
+
+>>> l.index(3)
+2
+
+>>> l.index(10)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 10 is not in list
+
+10 is not in list
+```
+
+- `l.count(<obj>)`  : Verilen objeden kaç tane bulunduğunu söyler. Bulamazsa 0 döner. Boş kullanılmaz.
+
+```python
+>>> l = [1,2,3,3,4,4,4]
+
+>>> l.count(4)
+3
+
+>>> l.count(10)
+0
+```

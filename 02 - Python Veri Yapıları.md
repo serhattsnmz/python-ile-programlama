@@ -85,6 +85,7 @@
 - Float (float)
 - Strings (str)
 - Boolean (bool)
+- NoneType
 - Complex Numbers (complex)
 
 ```python

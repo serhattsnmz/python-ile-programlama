@@ -123,3 +123,36 @@ True
 >>> a, b
 ('bar', 'foo')
 ```
+
+## Tuple Foksiyonları
+
+- `t.index(<obj>)`  : Verilen ifadenin ilk yerinin index numarasını döndürür. Bulamazsa ValueError döner.
+
+```python
+>>> t = (1,2,3,3,4,4,4)
+
+>>> t.index(4)
+4
+
+>>> t.index(10)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: tuple.index(x): x not in tuple
+
+tuple.index(x): x not in tuple
+```
+
+- `t.count(<obj>)`  : Verilen objeden kaç tane bulunduğunu söyler. Bulamazsa 0 döner. Boş kullanılmaz.
+
+```python
+>>> t = (1,2,3,3,4,4,4)
+>>> t.count(4)
+3
+
+>>> t.count()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: count() takes exactly one argument (0 given)
+
+count() takes exactly one argument (0 given)
+```
