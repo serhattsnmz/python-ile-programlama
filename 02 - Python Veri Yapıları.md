@@ -46,7 +46,7 @@
 1743378752
 ```
 
-<center><img src="https://files.realpython.com/media/t.2d7bcb9afaaf.png" width="50%" /></center>
+<p align="center"><img src="https://files.realpython.com/media/t.2d7bcb9afaaf.png" width="50%" /></p>
 
 ```python
 >>> m = n
@@ -56,7 +56,7 @@
 1743378752
 ```
 
-<center><img src="https://files.realpython.com/media/t.d368386b8423.png" width="50%" /></center>
+<p align="center"><img src="https://files.realpython.com/media/t.d368386b8423.png" width="50%" /></p>
 
 ```python
 >>> m = 400
@@ -66,7 +66,7 @@
 1743378752
 ```
 
-<center><img src="https://files.realpython.com/media/t.d476d91592cd.png" width="50%" /></center>
+<p align="center"><img src="https://files.realpython.com/media/t.d476d91592cd.png" width="50%" /></p>
 
 ```python
 >>> n = "foo"
@@ -74,7 +74,7 @@
 100584432
 ```
 
-<center><img src="https://files.realpython.com/media/t.344ab0b3aa8c.png" width="50%" /></center>
+<p align="center"><img src="https://files.realpython.com/media/t.344ab0b3aa8c.png" width="50%" /></p>
 
 - Değişkenin yaşam döngüsü, değişken bir değere referans olarak atandığında başlar, değerin referansı kalmadığında ise son bulur.
 - Bir değişkeni manuel olarak kaldırmak için `del <degisken_adi>` kullanılabilir.

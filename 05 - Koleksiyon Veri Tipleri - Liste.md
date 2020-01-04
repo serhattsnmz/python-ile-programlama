@@ -44,7 +44,7 @@ False
 - Liste elemanları unique olmak zorunda değillerdir.
 - Indexler üzerinden bir elamana ulaşılabilir.
 
-<center><img src="https://files.realpython.com/media/t.c11ea56e8ca2.png" width="50%" /></center>
+<p align="center"><img src="https://files.realpython.com/media/t.c11ea56e8ca2.png" width="50%" /></p>
 
 - Index işlemleri string işlemlerindekiyle aynıdır.
     - Tek fark, içerikleri birebir aynı olsa bile, üretilen yeni bir listedir ve eskisiyle aynı değildir.
