@@ -1,11 +1,19 @@
 # Python ile Programlamaya Giriş
 
-- Python hakkında genel bilgi
+- Neden Python
+    - Python popüler bir dildir.
+        - https://pypl.github.io/PYPL.html
+        - https://insights.stackoverflow.com/survey/2019
+    - Python yorumlanan bir dildir. (Python is Interpreted not compiled)
+        - Kodların taşınması kolaydır.
+        - Development süreci daha kolaydır.
+        - Eksi : Reverse-engineerig, compiled dillere göre daha kolaydır.
+        - Eksi : Runtime zamanında daha fazla zaman kaybeder, kısmen daha yavaştır.
+    - Geliştirici desteğinin çok fazla olması ve geniş kütüphane desteği
     - Karmaşık olmayan kod yazımı
     - Öğreniminin kolay olması
     - Dinamik veri yapısı
     - Nesne tabanlı programlamaya elverişli yapısı
-    - Geliştirici desteğinin çok fazla olması ve geniş kütüphane desteği
 - Python nerelerde kullanılır:
     - Web Geliştirme (Flask, Falcon, Django)
     - Masaüstü geliştirme (PyQt, Tkinter)

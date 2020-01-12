@@ -11,8 +11,9 @@
 - (is) Değer ve ID eşitliği manasına gelir
 - (in) Mevcut anlamına gelir ( kümenin içinde olup olmadığını test ederken kullanmıştık)
 
+**Small Integeer Caching**
 
-NOT : Pythonda -5'ten 256'ya kadar olan sayısal değerler array olarak hafızada tanımlı tutulur. Bu sayılarla değişken tanımlandığında aynı değerlere referans verir. Doğal olarak int ifadelerde `is` kullanılması tavsiye edilmez.
+Pythonda -5'ten 256'ya kadar olan sayısal değerler array olarak hafızada tanımlı tutulur. Bu sayılarla değişken tanımlandığında aynı değerlere referans verir. Doğal olarak int ifadelerde `is` kullanılması tavsiye edilmez.
 
 Bkz: https://docs.python.org/3/c-api/long.html#c.PyLong_FromLong
 
@@ -180,4 +181,95 @@ True
 ## If - Elif - Else Yapısı
 
 - Girintili ifadeler ve kod bloğu
+    - Off-side rule languages : https://en.wikipedia.org/wiki/Off-side_rule#Off-side_rule_languages
 - `pass` keyword ifadesi
+
+### One-Line if Statements
+
+```python
+if <expr>:
+    <statement>
+
+if <expr>: <statement>
+
+if <expr>: <statement_1>; <statement_2>; ...; <statement_n>
+```
+
+```python
+>>> x = 3
+>>> if x == 1: print('foo'); print('bar'); print('baz')
+... elif x == 2: print('qux'); print('quux')
+... else: print('corge'); print('grault')
+...
+corge
+grault
+```
+
+### Conditional Expressions (Python’s Ternary Operator)
+
+```python
+<expr1> if <conditional_expr> else <expr2>
+```
+
+```python
+>>> if a > b:
+...     m = a
+... else:
+...     m = b
+
+>>> m = a if a > b else b
+```
+
+- Tek sıra if ifadeleri kullanılırken, işlem önceliğine dikkat edilmelidir.
+- Uzun ifadelerin içinde tek sıra if ifadeleri kullanılacaksa, parantez ile kullanmak okunurluk açısından daha iyidir.
+
+```python
+>>> x = y = 40
+
+>>> z = 1 + x if x > y else y + 2
+>>> z
+42
+
+>>> z = (1 + x) if x > y else (y + 2)
+>>> z
+42
+
+>>> z = 1 + (x if x > y else y) + 2
+>>> z
+43
+```
+
+- Tek sıra ifadeleri, ard arda kullanılarak if/elif/else yapısı kurulabilir. 
+
+```python
+>>> s = ('foo' if (x == 1) else
+...      'bar' if (x == 2) else
+...      'baz' if (x == 3) else
+...      'qux' if (x == 4) else
+...      'quux')
+>>> s
+'baz'
+```
+
+- Normal if yapısında olduğu gibi, tek sıra if yapısında da eğer durum değeri True değilse ifade çalıştırılmaz.
+
+```python
+>>> 'foo' if True else 1/0
+'foo'
+>>> 1/0 if False else 'bar'
+'bar'
+```
+
+- Ayrıca ifadeler tek tek çalıştırılır.
+
+```python
+>>> 1 if True else 2 if 1/0 else 3
+1
+
+>>> 1 if False else 2 if 1/0 else 3
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+
+division by zero
+```

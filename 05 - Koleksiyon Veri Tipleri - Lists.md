@@ -1,4 +1,4 @@
-# Koleksiyon Veri Tipleri - Liste
+# Koleksiyon Veri Tipleri - Lists (Listeler)
 
 - Listeler sıralıdır.
     - Ordered Collection olarak tanımlanır.

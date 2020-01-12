@@ -1,4 +1,4 @@
-# Koleksiyon Veri Tipleri - Dictionaries
+# Koleksiyon Veri Tipleri - Dictionaries (Sözlükler)
 
 - Listelere benzer olarak:
     - Mutable yapıdadırlar
@@ -95,6 +95,18 @@ d = dict()
 {'key': 'new value'}
 ```
 
+## İki dict verisini birleştirme
+
+```python
+>>> x = {'a': 1, 'b': 2}
+>>> y = {'b': 3, 'c': 4}
+
+>>> z = {**x, **y}
+
+>>> z
+{'c': 4, 'a': 1, 'b': 3}
+```
+
 ## Key yapısının özellikleri
 
 - Keyler her obje yapısında olabilirler, hatta build-in obj yapısında bile olabilirler
@@ -166,7 +178,7 @@ TypeError: unhashable type: 'list'
 
 ## Dict Operatörleri
 
-- (in)      List içinde belli bir kelimenin olup olmadığına bakma
+- (in)      Dict içinde belli bir kelimenin olup olmadığına bakma
 - (not in)  in yapısının tersi
 
 NOT : Özellikle KeyError hatalarından kaçınmak için, bir key değerinin öncelikle dict içinde olup olmadığı kontrol edilmelidir.
