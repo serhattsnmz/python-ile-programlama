@@ -24,9 +24,15 @@
 - Python geliştirme ortamları
     - Konsol üzerinden kullanım
     - PtPython
-    - Visual Studio Code
-    - Jupyter Notebook - Anaconda
-    - PyCharm
+    - IDE / IDLE - Code Editor
+      - Integrated Development ( and Learning ) Environment
+      - Visual Studio Code
+      - Jupyter Notebook - Anaconda
+      - PyCharm
+      - Thonny
+    - Online Editors
+      - https://www.python.org/shell/
+      - https://replit.com/languages/python3
 - Örnek bir python dosyası oluşturma ve çalıştırma
 - Pip kurulumu ve kullanımı
 - VirualEnv kurulumu ve kullanımı
