@@ -4,7 +4,7 @@
 
 - Değişken nedir?
 - Değişkenler nasıl tanımlanır?
-- Değişken tipleri : 
+- Değişken tanımlama tiplerine göre diller : 
     - Static-Typed Diller : Compile edildiğinde tipi belirlenen dillerde kullanılır. 
         - Java, C, C++, C#, FORTRAN, Pascal, Scala
     - Dynamic-Typed Diller : Runtime durumunda tipi kontrol edilir ve belirlenir.

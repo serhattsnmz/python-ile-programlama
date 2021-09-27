@@ -1,9 +1,74 @@
-# String İşlemleri
+# Karakter Veri Tipleri
 
 - Tek tırnak veya çift tırnak ile tanımlanabilir.
 - Birden fazla satırda tanımlama yapılacaksa üç tırnakla tanımlama yapılabilir.
-- Kaçış karakteri (\\)
-- White Space : Boşluk karakterleri : " ", "\n", "\t"
+- Max sınırı yoktur. Çalıştırılan makinenin memory değeriyle sınırlıdır.
+- Eğer string içinde tek veya çift tırnak kullanılacaksa;
+  - Tek tırnak barındıran string çift tırnak içinde yazılabilir.
+  - Çift tırnak barındıran string tek tırnak içinde yazılabilir.
+  - Üç tırnak kullanılabilir.
+  - Kaçış karakteri kullanılabilir.
+
+## Kaçış Karakterleri
+
+| Escape Sequence | Usual Interpretation of Character(s) After Backslash  | “Escaped” Interpretation                                     |
+| --------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| `\'`            | Terminates string with single quote opening delimiter | Literal single quote (`'`) character                         |
+| `\"`            | Terminates string with double quote opening delimiter | Literal double quote (`"`) character                         |
+| `\<newline>`    | Terminates input line                                 | [Newline is ignored](https://stackoverflow.com/questions/48693600/what-does-the-newline-escape-sequence-mean-in-python) |
+| `\\`            | Introduces escape sequence                            | Literal backslash (`\`) character                            |
+
+```python
+>>> print('a\
+... b\
+... c')
+abc
+```
+
+| Escape Sequence | “Escaped” Interpretation                            |
+| --------------- | --------------------------------------------------- |
+| `\a`            | ASCII Bell (`BEL`) character                        |
+| `\b`            | ASCII Backspace (`BS`) character                    |
+| `\f`            | ASCII Formfeed (`FF`) character                     |
+| `\n`            | ASCII Linefeed (`LF`) character                     |
+| `\N{<name>}`    | Character from Unicode database with given `<name>` |
+| `\r`            | ASCII Carriage Return (`CR`) character              |
+| `\t`            | ASCII Horizontal Tab (`TAB`) character              |
+| `\uxxxx`        | Unicode character with 16-bit hex value `xxxx`      |
+| `\Uxxxxxxxx`    | Unicode character with 32-bit hex value `xxxxxxxx`  |
+| `\v`            | ASCII Vertical Tab (`VT`) character                 |
+| `\ooo`          | Character with octal value `ooo`                    |
+| `\xhh`          | Character with hex value `hh`                       |
+
+```python
+>>> print("a\tb")
+a    b
+>>> print("a\141\x61")
+aaa
+>>> print("a\nb")
+a
+b
+>>> print('\u2192 \N{rightwards arrow}')
+→ →
+```
+
+## Raw String
+
+* `r` veya `R` öneki ile belirtilir.
+* Önüne geldiği string ifadenin içindeki kaçış karakterlerini direk olarak yazdırmaya yarar.
+
+```python
+>>> print('foo\nbar')
+foo
+bar
+>>> print(r'foo\nbar')
+foo\nbar
+
+>>> print('foo\\bar')
+foo\bar
+>>> print(R'foo\\bar')
+foo\\bar
+```
 
 ## String Operatörleri
 

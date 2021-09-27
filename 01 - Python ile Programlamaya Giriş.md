@@ -35,9 +35,15 @@
             - "P"rint the output
             - "L"oops back and repeats the process
     - PtPython
-    - Visual Studio Code
-    - Jupyter Notebook - Anaconda
-    - PyCharm
+    - IDE / IDLE - Code Editor
+      - Integrated Development ( and Learning ) Environment
+      - Visual Studio Code
+      - Jupyter Notebook - Anaconda
+      - PyCharm
+      - Thonny
+    - Online Editors
+      - https://www.python.org/shell/
+      - https://replit.com/languages/python3
 - Örnek bir python dosyası oluşturma ve çalıştırma
     - Hello world!
 - Pip kurulumu ve kullanımı
