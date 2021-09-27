@@ -4,6 +4,7 @@
     - Python popüler bir dildir.
         - https://pypl.github.io/PYPL.html
         - https://insights.stackoverflow.com/survey/2019
+        - Python'ın popüler bir dil olması, iş olanaklarının fazla olmasını sağlıyor.
     - Python yorumlanan bir dildir. (Python is Interpreted not compiled)
         - Kodların taşınması kolaydır.
         - Development süreci daha kolaydır.
@@ -21,13 +22,24 @@
     - Machine Learning (Tensor Flow, Keras, NumPy, Pandas)
     - Data Scraping & Web Crawling (BeautifulSoup, Requests-HTML)
 - Python 3 kurulumu
+    - Linux için kurulum
+    - Windows için kurulum
+    - Python versiyon kontrolü
+    
 - Python geliştirme ortamları
     - Konsol üzerinden kullanım
+        - Ptyhon Interpreter ( Python Yorumlayıcı)
+        - REPL
+            - "R"ead the command
+            - "E"xecute the command
+            - "P"rint the output
+            - "L"oops back and repeats the process
     - PtPython
     - Visual Studio Code
     - Jupyter Notebook - Anaconda
     - PyCharm
 - Örnek bir python dosyası oluşturma ve çalıştırma
+    - Hello world!
 - Pip kurulumu ve kullanımı
 - VirualEnv kurulumu ve kullanımı
 - Debugging

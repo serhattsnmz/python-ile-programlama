@@ -2,7 +2,7 @@
 
 - Tek tırnak veya çift tırnak ile tanımlanabilir.
 - Birden fazla satırda tanımlama yapılacaksa üç tırnakla tanımlama yapılabilir.
-- Kaçış karakteri (\)
+- Kaçış karakteri (\\)
 - White Space : Boşluk karakterleri : " ", "\n", "\t"
 
 ## String Operatörleri
