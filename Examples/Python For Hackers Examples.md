@@ -15,10 +15,18 @@
     - Python ile FTP ve SSH erişimi sağlama
     - Bruteforce uygulama ve bruteforce için wordlist üretimi
     - Python ile reverse shell uygulamaları
+        - `http.server` ile dosyaları yayınlama
+        - Basit flask api örneği
 - Crptography
     - Python ile dosya bilgisi öğrenme
     - File Creacking
 - Dosya bilgilerini parse etme
 - Json bilgisini çekme 
-- 
+- Kütüphaneler
+    - flask ve flask-restful
+    - http.server
+    - requests
+    - beatuful-soup
+    - selenium
+    - json 
 

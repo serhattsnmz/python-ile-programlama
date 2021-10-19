@@ -1,8 +1,9 @@
 # Sayısal Veri Tipleri
 
-- Tamsayılar (Integer)
-    - Int değerler için max bir limit yoktur. Çalıştırılan bilgisayarın memory değeri max limittir.
-    - Onluk taban dışında tam sayı tanımlamaları için aşağıdaki önekler kullanılır:
+## Tamsayılar (Integer)
+
+- Int değerler için max bir limit yoktur. Çalıştırılan bilgisayarın memory değeri max limittir.
+- Onluk taban dışında tam sayı tanımlamaları için aşağıdaki önekler kullanılır:
 
 | Prefix                                                       | **Interpretation** | **Base** |
 | ------------------------------------------------------------ | ------------------ | -------- |
@@ -21,12 +22,15 @@
 2
 ```
 
-- Ondalıklı Sayılar (Float)
-    - Max sınırı : 1.8 x 10 ^ 308
-    
-    - > Almost all platforms represent Python `float` values as 64-bit “double-precision” values, according to the [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754_revision) standard. In that case, the maximum value a floating-point number can have is approximately 1.8 ⨉ 10308. Python will indicate a number greater than that by the string `inf`
-    
-    - Min sınırı : 5.0 ⨉ 10 ^ -324
+---
+
+## Ondalıklı Sayılar (Float)
+
+- Max sınırı : 1.8 x 10 ^ 308
+
+- > Almost all platforms represent Python `float` values as 64-bit “double-precision” values, according to the [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754_revision) standard. In that case, the maximum value a floating-point number can have is approximately 1.8 ⨉ 10^308. Python will indicate a number greater than that by the string `inf`
+
+- Min sınırı : 5.0 ⨉ 10 ^ -324
 
 ```python
 >>> a = 4.7
@@ -57,6 +61,30 @@ inf
 0.0
 ```
 
+- Ondalık sayı limitleri
+    - https://docs.python.org/3.10/tutorial/floatingpoint.html
+
+```python
+>>> 0.1 == 0.1000000000000000055511151231257827021181583404541015625
+True
+>>> 0.1 == 0.100000000000000005
+True
+
+>>> repr(0.1)
+'0.1'
+>>> eval(repr(0.1))
+0.1
+>>> eval(repr(0.1)) == 1000000000000000055511151231257827021181583404541015625
+False
+
+>>> .1 + .1 + .1 == .3
+False
+>>> round(.1 + .1 + .1, 10) == round(.3, 10)
+True
+```
+
+---
+
 ### Aritmetik Operatörler
 
 - (+) Toplama işlemini gerçekleştirir
@@ -66,6 +94,8 @@ inf
 - (//) Tam sayı bölme işlemini gerçekleştirir. Cevabın tam kısmını çıktı olarak verir.
 - (**) Üs alma işlemini gerçekleştirir. Diğer bir söylemle kuvvet alır.
 - (%) Bölme işleminin kalanını hesaplar.
+
+---
 
 ### Atama Operatörleri 
 
@@ -81,6 +111,8 @@ inf
 - (&=) ve (and) bağlacını uygulayarak atama yapar
 - (|=) veya (or) bağlacını uygulayarak atama yapar
 - (^=) xor uygulayarak atama yapar
+
+---
 
 ## Veri Tipi Dönüşümleri
 

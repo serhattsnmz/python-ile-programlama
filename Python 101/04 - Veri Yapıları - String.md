@@ -8,6 +8,7 @@
   - Çift tırnak barındıran string tek tırnak içinde yazılabilir.
   - Üç tırnak kullanılabilir.
   - Kaçış karakteri kullanılabilir.
+- "None" ve "Empty" arasındaki farklar
 
 ## Kaçış Karakterleri
 
