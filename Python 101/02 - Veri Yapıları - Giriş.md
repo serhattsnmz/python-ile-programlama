@@ -3,18 +3,23 @@
 ## Değişkenler ve Değişken Tanımlama
 
 - Değişken nedir?
-- Değişkenler nasıl tanımlanır?
-- Değişken tanımlama tiplerine göre diller : 
-    - Static-Typed Diller : Compile edildiğinde tipi belirlenen dillerde kullanılır. 
-        - Java, C, C++, C#, FORTRAN, Pascal, Scala
-    - Dynamic-Typed Diller : Runtime durumunda tipi kontrol edilir ve belirlenir.
-        - JavaScript, Objective-C, PHP, Python, Ruby
-    - Strong-Typed Diller : Belirlenen tip üzerinden işlem yapılmasını zorunlu kılar. 
-        - Örneğin string olarak tanımlanmış bir değişkenle, int bir veriyi toplayamazsınız.
-        - Java, Python, C# vs.
-    - Weakly-Typed Diller : Değişkenin tipi bellidir, fakat farklı tiplerle işlem yapıldığında hata vermek yerine çevirme işlemi yapılır.
-        - Örneğin string bir değer ile int değer toplandığında, int değer string olarak çevrilip birleştirme yapılır. 
-        - PHP, Perl
+- Değişken tanımlama ve atama operatörü
+
+## Değişken tanımlama tiplerine göre diller : 
+
+- Static-Typed Diller : Compile edildiğinde tipi belirlenen dillerde kullanılır. 
+    - Java, C, C++, C#, FORTRAN, Pascal, Scala
+- Dynamic-Typed Diller : Runtime durumunda tipi kontrol edilir ve belirlenir.
+    - JavaScript, Objective-C, PHP, Python, Ruby
+- Strong-Typed Diller : Belirlenen tip üzerinden işlem yapılmasını zorunlu kılar. 
+    - Örneğin string olarak tanımlanmış bir değişkenle, int bir veriyi toplayamazsınız.
+    - Java, Python, C# vs.
+- Weakly-Typed Diller : Değişkenin tipi bellidir, fakat farklı tiplerle işlem yapıldığında hata vermek yerine çevirme işlemi yapılır.
+    - Örneğin string bir değer ile int değer toplandığında, int değer string olarak çevrilip birleştirme yapılır. 
+    - PHP, Perl
+
+## Değişken isimlendirme kuralları
+
 - Değişken isimlendirme kuralları : snake_case, PascalCase, camelCase, _private_tanim, GLOBAL_TANIM
     - Değişken ismi sayı ile başlayamaz
     - Değişken arasında boşluk olamaz
@@ -22,14 +27,19 @@
     - Değişkenler, büyük-küçük harf duyarlıdır.
     - Python tarafından reserve edilen özel anahtar kelimeler değişken ismi olarak kullanılamaz. (while, not vs. )
         - Tüm listeye erişmek için : `help("keywords")`
-    - Python kütüphanelerinden gelen değerler override edilebilir, bu konuya dikkat edilmesi gerekir, çünkü override edilen değerler eski haline geri getirilemeyecektir. (print, time vs.)
+    - Python kütüphanelerinden gelen değerler override edilebilir (ayrıntılar aşağıda).
+- PEPs kuralları:
+    - Python Enhancement Proposals
+    - Python Geliştirme Önerileri
+    - Index of PEPs : https://www.python.org/dev/peps/
+    - PEP-8 kuralları : https://pep8.org/
 - PEP 8 kurallarına göre : 
     - Fonksiyonlarda ve değişken isimlendirmelerinde : Snake Case
     - Class isimlendirmelerinde : Pascal Case kullanılmalıdır.
 - `type()` fonksiyonu
 - `del` ile değişken silme
 
-> Python dilinde, diğer dillerin aksine built-in değişken-fonksion-class isimlerine herhangi bir değer atanmasında hata alınmaz. Değişken atamalarında built-in isimlendirmelerin kullanılmamasına yazılımcının dikkat etmesi gerekir.
+> **NOT :** Python dilinde, diğer dillerin aksine built-in değişken-fonksion-class isimlerine herhangi bir değer atanmasında hata alınmaz. Değişken atamalarında built-in isimlendirmelerin kullanılmamasına yazılımcının dikkat etmesi gerekir.
 >
 > ```python
 > >>> str
@@ -69,61 +79,6 @@
 >
 > 
 
----
-
-## Pythonda referanslama arka plan yapısı:
-
-- Python üzerinde tanımlanan her değişkenin bir veri tipi vardır. Fakat python, değişkene farklı veri tiplerinde değerler atanmasına izin verir ve atama yapıldığında arka plandaki veri veri yapısını değiştirir.
-- Pythonda her tanımlı şey birer classtır.
-- Bir değişken tanımlandığında, öncelikli olarak o veri tipinden bir nesne oluşturulur ve değişken ismi o nesneye referans verilir.
-- Değişkenin referans aldığı yer, `id(<degisken>)` fonksiyonu ile öğrenilebilir.
-
-```python
->>> type(300)
-<class 'int'>
-```
-
-```python
->>> n = 300
->>> id(n)
-1743378752
-```
-
-<p align="center"><img src="https://files.realpython.com/media/t.2d7bcb9afaaf.png" width="50%" /></p>
-
-```python
->>> m = n
->>> id(m)
-1743378752
->>> id(n)
-1743378752
-```
-
-<p align="center"><img src="https://files.realpython.com/media/t.d368386b8423.png" width="50%" /></p>
-
-```python
->>> m = 400
->>> id(m)
-1743378912
->>> id(n)
-1743378752
-```
-
-<p align="center"><img src="https://files.realpython.com/media/t.d476d91592cd.png" width="50%" /></p>
-
-```python
->>> n = "foo"
->>> id(n)
-100584432
-```
-
-<p align="center"><img src="https://files.realpython.com/media/t.344ab0b3aa8c.png" width="50%" /></p>
-
-- Değişkenin yaşam döngüsü, değişken bir değere referans olarak atandığında başlar, değerin referansı kalmadığında ise son bulur.
-- Bir değişkeni manuel olarak kaldırmak için `del <degisken_adi>` kullanılabilir.
-
----
-
 ## Python Veri Tipleri
 
 - `type()` fonksiyonu
@@ -144,7 +99,13 @@
 <class 'complex'>
 ```
 
----
+## Chained Assignment
+
+```python
+>>> a = b = c = 300
+>>> print(a, b, c)
+300 300 300
+```
 
 ## Print() Fonksiyonu
 

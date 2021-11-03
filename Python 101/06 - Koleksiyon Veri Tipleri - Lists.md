@@ -1,5 +1,16 @@
 # Koleksiyon Veri Tipleri - Lists (Listeler)
 
+- Listelerin tanımlanması
+
+```python
+>>> a = ['foo', 'bar', 'baz', 'qux']
+
+>>> print(a)
+['foo', 'bar', 'baz', 'qux']
+>>> a
+['foo', 'bar', 'baz', 'qux']
+```
+
 - Listeler sıralıdır.
     - Ordered Collection olarak tanımlanır.
     - Elemanlar aynı olsa bile, sıralamanın değişmesi veriyi farklı kılar.
@@ -42,11 +53,18 @@ False
 
 - Pythonda listelerin belli bir sınırı yoktur. Memory izin verdiği kadar obje tutabilir.
 - Liste elemanları unique olmak zorunda değillerdir.
+
+```python
+>>> a = ['bark', 'meow', 'woof', 'bark', 'cheep', 'bark']
+>>> a
+['bark', 'meow', 'woof', 'bark', 'cheep', 'bark']
+```
+
 - Indexler üzerinden bir elamana ulaşılabilir.
 
 <p align="center"><img src="https://files.realpython.com/media/t.c11ea56e8ca2.png" width="50%" /></p>
 
-- Index işlemleri string işlemlerindekiyle aynıdır.
+- Index ve slicing işlemleri string işlemlerindekiyle aynıdır.
     - Tek fark, içerikleri birebir aynı olsa bile, üretilen yeni bir listedir ve eskisiyle aynı değildir.
     - Ayrıca string işlemlerinde tek bir öğe değiştirilemezken, listelerde değiştirilebilir.
 
@@ -99,6 +117,13 @@ TypeError: 'str' object does not support item assignment
 >>> id(exp)
 26071968
 
+>>> exp[0] = "t"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+
+'str' object does not support item assignment
+
 # Mutable
 >>> l = [1,2]
 >>> id(l)
@@ -107,6 +132,10 @@ TypeError: 'str' object does not support item assignment
 >>> l.append(3)
 >>> id(l)
 86088280
+
+>>> l[0] = "t"
+>>> l
+['t', 2, 3]
 ```
 
 - Listeler dinamiktir.
@@ -115,10 +144,31 @@ TypeError: 'str' object does not support item assignment
 
 ## List Operatörleri
 
-- (+)       List birleştirme 
-- (*)       List çoğaltma
-- (in)      List içinde belli bir kelimenin olup olmadığına bakma
-- (not in)  in yapısının tersi
+- `+` : List birleştirme 
+- `*` : List çoğaltma
+
+```python
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a + ['grault', 'garply']
+['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply']
+
+>>> a * 2
+['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'foo', 'bar', 'baz',
+'qux', 'quux', 'corge']
+```
+
+- `in` : List içinde belli bir kelimenin olup olmadığına bakma
+- `not in` :  in yapısının tersi
+
+```python
+>>> a ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> 'qux' in a
+True
+>>> 'thud' not in a
+True
+```
 
 ## List Fonksiyonları
 
@@ -126,9 +176,33 @@ TypeError: 'str' object does not support item assignment
 - max()     Listenin en büyük elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar.
 - min()     Listenin en küçük elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar.
 
+```python
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> len(a)
+6
+>>> min(a)
+'bar'
+>>> max(a)
+'qux'
+```
+
 ## Liste İşlemleri
 
 - Listenin tek bir elemanını değiştirme
+
+```python
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a[2] = 10
+>>> a[-1] = 20
+>>> a
+['foo', 'bar', 10, 'qux', 'quux', 20]
+```
+
 - Listenin birden fazla elamanını değiştirme
     - Değiştirilecek eleman sayısı ile yeni eleman sayısı aynı olmak zorunda değildir.
 
@@ -178,25 +252,64 @@ TypeError: 'str' object does not support item assignment
 ['foo', 'bar', 'baz', 'quux', 'corge']
 ```
 
-- Listenin başına veya sonrasına yeni bir liste ekleme
+- Listenin başına veya sonrasına `+` operatörü ile başka bir iterable değer eklemek.
+    - Eklenecek değer herhangi bir "iterable" değer olabilir. Iterable olmayan değerlerde hata verir.
 
 ```python
 >>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
-
 >>> a += ['grault', 'garply']
 >>> a
 ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'grault', 'garply']
 
 >>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
-
 >>> a = [10, 20] + a
 >>> a
 [10, 20, 'foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux']
+>>> a += 'corge'
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux', 'c', 'o', 'r', 'g', 'e']
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux']
+>>> a += (1,2,3)
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux', 1, 2, 3]
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux']
+>>> a += {"a":1, "b":2}
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux', 'a', 'b']
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+>>> a += 20
+Traceback (most recent call last):
+  File "<pyshell#58>", line 1, in <module>
+    a += 20
+TypeError: 'int' object is not iterable
 ```
 
-- `a.append(<obj>)`         : Listeye eleman ekler.
-- `a.extend(<iterable>)`    : Listeye yeni bir liste ekler. += gibi davranır.
-- `a.insert(<index>, <obj>)`: Listenin belli bir alanına eleman ekler.
+## Liste Metotları
+
+- `a.append(<obj>)` : Listeye eleman ekler.
+
+```python
+>>> a = ['a', 'b']
+>>> a.append(123)
+>>> a
+['a', 'b', 123]
+```
+
+- `a.extend(<iterable>)` : Listeye yeni bir liste ekler. `+=` gibi davranır.
+
+```python
+>>> a = ['a', 'b']
+>>> a.extend([1, 2, 3])
+>>> a
+['a', 'b', 1, 2, 3]
+```
+
+- `a.insert(<index>, <obj>)`: Listenin belli bir sırasına eleman ekler.
 
 ```python
 >>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
@@ -205,17 +318,59 @@ TypeError: 'str' object does not support item assignment
 ['foo', 'bar', 'baz', 3.14159, 'qux', 'quux', 'corge']
 ```
 
-- `a.remove(<obj>)`         : Listenin içinden verilen elemanı kaldırır. 
+- `a.remove(<obj>)` : Listenin içinden verilen elemanı kaldırır. 
     - Eğer eleman birden fazla ise sadece ilk bulduğunu kaldırır. 
     - Eleman bulamaz ise ValueError hatası verir.
-- `a.pop(index=-1)`         : Listenin içinden verilen index numarasındaki elemanı kaldırır. 
-    - İndex verilmezse son öğreyi kaldırır.
-    - Eğer boş listeden eleman kaldırılmak istenirse veya olmayan index verilirse, IndexError hatası verir.
 
-- Listeleri sıralama
+```python
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'baz']
+>>> a.remove('baz')
+>>> a
+['foo', 'bar', 'qux', 'quux', 'corge', 'baz']
+
+>>> a.remove('Bark!')
+Traceback (most recent call last):
+  File "<pyshell#13>", line 1, in <module>
+    a.remove('Bark!')
+ValueError: list.remove(x): x not in list
+        
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge', 'baz']
+>>> [x for x in a if x != 'baz']
+['foo', 'bar', 'qux', 'quux', 'corge']
+```
+
+- `a.pop(index=-1)` : Listenin içinden verilen index numarasındaki elemanı kaldırır. 
+    - İndex verilmezse son öğreyi kaldırır.
+    - Kaldırılan elemanı return olarak dışarı verir.
+    - Eğer boş listeden eleman kaldırılmak istenirse veya olmayan index verilirse, IndexError hatası verir.
+    
+
+```python
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a.pop()
+'corge'
+>>> a
+['foo', 'bar', 'baz', 'qux', 'quux']
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+
+>>> a.pop(1)
+'bar'
+>>> a
+['foo', 'baz', 'qux', 'quux', 'corge']
+
+>>> a.pop(-3)
+'qux'
+>>> a
+['foo', 'baz', 'quux', 'corge']
+```
+
+- `a.sort(reverse=True|False, key=myFunc)` : Listeleri sıralama
     - Listenin elemanları int ise küçükten büyüğe doğru sıralanır.
     - Listenin elemanları string ise, alfabetik olarak sıralanır.
-    - Listelerin sıralanması için içindeki değerlerin aynı veri tipinde olması gerekmektedir.
+    - `key` parametresine fonksiyon yazılabilir. Fonksiyon parametre olarak liste elemanını alır ve çıktı olarak sıralamada kullanılacak değeri döndürür.
+    - Listelerin sıralanması için içindeki değerlerin aynı veri tipinde olması gerekmektedir. Liste elemanları aynı tipte olmasa bile, `key` parametresinde verilen fonksiyon aynı değeri döndürüyorsa sıralama yapılabilir. 
 
 ```python
 >>> l = [2,3,1,7,0,5]
@@ -248,6 +403,54 @@ Traceback (most recent call last):
 TypeError: '<' not supported between instances of 'type' and 'type'
 
 '<' not supported between instances of 'type' and 'type'
+```
+
+```python
+>>> cars = ['Ford', 'BMWx10', 'Volvo']
+>>> cars.sort()
+>>> cars
+['BMWx10', 'Ford', 'Volvo']
+
+>>> cars.sort(reverse=True)
+>>> cars
+['Volvo', 'Ford', 'BMWx10']
+
+>>> cars.sort(key=lambda x : len(x))
+>>> cars
+['Ford', 'Volvo', 'BMWx10']
+
+>>> cars.sort(key=lambda x : len(x), reverse=True)
+>>> cars
+['BMWx10', 'Volvo', 'Ford']
+```
+
+```python
+def myFunc(e):
+  return e['year']
+
+cars = [
+  {'car': 'Ford', 'year': 2005},
+  {'car': 'Mitsubishi', 'year': 2000},
+  {'car': 'BMW', 'year': 2019},
+  {'car': 'VW', 'year': 2011}
+]
+
+cars.sort(key=myFunc)
+```
+
+```python
+>>> cars = ['Ford', 'BMWx10', 'Volvo', 2]
+
+>>> cars.sort()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: '<' not supported between instances of 'int' and 'str'
+
+'<' not supported between instances of 'int' and 'str'
+
+>>> cars.sort(key = lambda x : len(x) if type(x) == str else x)
+>>> cars
+[2, 'Ford', 'Volvo', 'BMWx10']
 ```
 
 - `l.index(<obj>)`  : Verilen ifadenin ilk yerinin index numarasını döndürür. Bulamazsa ValueError döner.

@@ -69,6 +69,10 @@
 
 - Örnek bir python dosyası oluşturma ve çalıştırma
     - Hello world!
+- `print()` ve `help()` komutları
+- Pythonda girintilerle kod blokları oluşturma
+    - Girinti sayısı
+    - Boşluk ve tab kullanımı
 - Pip kurulumu ve kullanımı
 - VirualEnv kurulumu ve kullanımı
 - Debugging

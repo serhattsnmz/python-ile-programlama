@@ -86,23 +86,6 @@ True
 True
 ```
 
-# Operator Precedence
-
-|                        | Operator                                         | Description                                                  |
-| ---------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| **lowest precedence**  | `or`                                             | Boolean OR                                                   |
-|                        | `and`                                            | Boolean AND                                                  |
-|                        | `not`                                            | Boolean NOT                                                  |
-|                        | `==`, `!=`, `<`, `<=`, `>`, `>=`, `is`, `is not` | comparisons, identity                                        |
-|                        | `|`                                              | bitwise OR                                                   |
-|                        | `^`                                              | bitwise XOR                                                  |
-|                        | `&`                                              | bitwise AND                                                  |
-|                        | `<<`, `>>`                                       | bit shifts                                                   |
-|                        | `+`, `-`                                         | addition, subtraction                                        |
-|                        | `*`, `/`, `//`, `%`                              | multiplication, division, floor division, [modulo](https://realpython.com/python-modulo-operator/) |
-|                        | `+x`, `-x`, `~x`                                 | unary positive, unary negation, bitwise negation             |
-| **highest precedence** | `**`                                             | exponentiation                                               |
-
 # Shorthand Augmented Assignment
 
 | Arithmetic                    | Bitwise               |
@@ -124,3 +107,59 @@ x = x <op> y
 >>> b *= " sönmez"
 ```
 
+# Chaining Comparison Operators
+
+- Birden fazla `and` ile yapılan karşılaştırma adımının tek bir adımda yazılmasıdır.
+- Her iki karşılaştırma sırayla kendi arasında karşılaştırılarak sonuca gidilir.
+
+```python
+>>> 1 < 2 and 2 < 3
+True
+>>> 1 < 2 < 3
+True
+
+>>> 1 < 2 < 1
+False
+>>> 1 == 1.0 < 0.5
+False
+>>> 1 == 1.0 == True
+True
+>>> 1 < 3 > 2
+True
+>>> 1 < 2 < 3 < 4 < 5
+True
+>>> "b" in "aba" in "cabad" < "cabae"
+True
+```
+
+- `Short-Circuit Chain Evaluation` kuralları burda da geçerlidir.
+
+```python
+>>> 2 < "2"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: '<' not supported between instances of 'int' and 'str'
+    
+>>> 3 < 2 < "2"
+False
+
+>>> 3 < 2 < (1//0)
+False
+```
+
+# Operator Precedence
+
+|                        | Operator                                         | Description                                                  |
+| ---------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| **lowest precedence**  | `or`                                             | Boolean OR                                                   |
+|                        | `and`                                            | Boolean AND                                                  |
+|                        | `not`                                            | Boolean NOT                                                  |
+|                        | `==`, `!=`, `<`, `<=`, `>`, `>=`, `is`, `is not` | comparisons, identity                                        |
+|                        | `|`                                              | bitwise OR                                                   |
+|                        | `^`                                              | bitwise XOR                                                  |
+|                        | `&`                                              | bitwise AND                                                  |
+|                        | `<<`, `>>`                                       | bit shifts                                                   |
+|                        | `+`, `-`                                         | addition, subtraction                                        |
+|                        | `*`, `/`, `//`, `%`                              | multiplication, division, floor division, [modulo](https://realpython.com/python-modulo-operator/) |
+|                        | `+x`, `-x`, `~x`                                 | unary positive, unary negation, bitwise negation             |
+| **highest precedence** | `**`                                             | exponentiation                                               |

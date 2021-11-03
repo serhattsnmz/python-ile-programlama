@@ -70,8 +70,8 @@ x = {<obj>, <obj>, ..., <obj>}
 
 ## Set Operatörleri
 
-- (in)      Set içinde belli bir kelimenin olup olmadığına bakma
-- (not in)  in yapısının tersi
+- `in` : Set içinde belli bir kelimenin olup olmadığına bakma
+- `not in` : in yapısının tersi
 
 ```python
 >>> x = {'foo', 'bar', 'baz'}
@@ -84,9 +84,9 @@ False
 
 ## Set Fonksiyonları
 
-- len()     Set eleman sayısını verir
-- max()     Set en büyük key elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar. Eleman tiplerinin aynı olması gerekir.
-- min()     Set en küçük key elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar. Eleman tiplerinin aynı olması gerekir.
+- `len()` : Set eleman sayısını verir
+- `max()` : Set en büyük key elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar. Eleman tiplerinin aynı olması gerekir.
+- `min()` : Set en küçük key elemanını verir. String değerler varsa unicode değerlerinin toplamına göre işlem yapar. Eleman tiplerinin aynı olması gerekir.
 
 ```python
 >>> x = {1,3,2,0,-1}
@@ -120,7 +120,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.union(x2[, x3 ...])` veya `x1 | x2 [| x3 ...]`
     - Kümelerin birleşimini alır.
 
-<p align="center"><img src="https://files.realpython.com/media/t.ca57b915cec6.png" width="50%" /></p>
+<p align="center"><img src="../statics/03.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -136,7 +136,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.intersection(x2[, x3 ...])` veya `x1 & x2 [& x3 ...]`
     - Kümelerin keşisimini alır.
 
-<p align="center"><img src="https://files.realpython.com/media/t.9c6d33717cdc.png" width="50%" /></p>
+<p align="center"><img src="../statics/04.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -152,7 +152,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.difference(x2[, x3 ...])` veya `x1 - x2 [- x3 ...]`
     - Kümelerin farkını alır.
 
-<p align="center"><img src="https://files.realpython.com/media/t.a90b4c323d99.png" width="50%" /></p>
+<p align="center"><img src="../statics/05.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -179,12 +179,12 @@ Eğer birden fazla sayıda kümede fark işlemi yapılırsa, soldan sağa doğru
 {1, 2, 3}
 ```
 
-<p align="center"><img src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/t.b37d6f78f99a.png&w=1153&sig=43b3c03ccbeea1cf89d8152472b81c118a065c67" width="70%" /></p>
+<p align="center"><img src="../statics/06.png" width="70%" /></p>
 
 - `x1.symmetric_difference(x2)` veya `x1 ^ x2 [^ x3 ...]`
     - Kümelerin simetrik farkını alır.
 
-<p align="center"><img src="https://files.realpython.com/media/t.604de51646cc.png" width="50%" /></p>
+<p align="center"><img src="../statics/07.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
