@@ -243,9 +243,9 @@ False
 True
 ```
 
-<center><img src="..\statics\01.png" style="zoom:50%;" /></center>
+<p align="center"><img src="../statics/img/01.png" style="zoom:50%;" /></p>
 
-<center><img src="..\statics\02.png" style="zoom:50%;" /></center>
+<p align="center"><img src="../statics/img/02.png" style="zoom:50%;" /></p>
 
 - Dil işleme gibi yüksek sayıda ama tekrarlayan öğeler içeren yapılarda kullanılması, RAM optimizasyonunu fazlasıyla düşürür.
 

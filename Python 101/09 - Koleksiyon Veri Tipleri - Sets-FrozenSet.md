@@ -120,7 +120,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.union(x2[, x3 ...])` veya `x1 | x2 [| x3 ...]`
     - Kümelerin birleşimini alır.
 
-<p align="center"><img src="../statics/03.png" width="50%" /></p>
+<p align="center"><img src="../statics/img/03.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -136,7 +136,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.intersection(x2[, x3 ...])` veya `x1 & x2 [& x3 ...]`
     - Kümelerin keşisimini alır.
 
-<p align="center"><img src="../statics/04.png" width="50%" /></p>
+<p align="center"><img src="../statics/img/04.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -152,7 +152,7 @@ TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 - `x1.difference(x2[, x3 ...])` veya `x1 - x2 [- x3 ...]`
     - Kümelerin farkını alır.
 
-<p align="center"><img src="../statics/05.png" width="50%" /></p>
+<p align="center"><img src="../statics/img/05.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}
@@ -179,12 +179,12 @@ Eğer birden fazla sayıda kümede fark işlemi yapılırsa, soldan sağa doğru
 {1, 2, 3}
 ```
 
-<p align="center"><img src="../statics/06.png" width="70%" /></p>
+<p align="center"><img src="../statics/img/06.png" width="70%" /></p>
 
 - `x1.symmetric_difference(x2)` veya `x1 ^ x2 [^ x3 ...]`
     - Kümelerin simetrik farkını alır.
 
-<p align="center"><img src="../statics/07.png" width="50%" /></p>
+<p align="center"><img src="../statics/img/07.png" width="50%" /></p>
 
 ```python
 >>> x1 = {'foo', 'bar', 'baz'}

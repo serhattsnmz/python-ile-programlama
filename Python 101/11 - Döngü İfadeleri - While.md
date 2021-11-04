@@ -1,5 +1,7 @@
 # Döngü İfadeleri - While
 
+- `iterable (yinelenebilir)` ve  `iteration (yenileme)`
+
 ## While ile döngüler
 
 ```python
@@ -34,9 +36,55 @@ foo
 
 ## `break` ve `continue` ifadeleri
 
+```python
+>>> n = 5
+>>> while n > 0:
+...     n -= 1
+...     if n == 2:
+...         break
+...     print(n)
+>>> print('Loop ended.')
+4
+3
+Loop ended.
+```
+
+```python
+>>> n = 5
+>>> while n > 0:
+...     n -= 1
+...     if n == 2:
+...         continue
+...     print(n)
+>>> print('Loop ended.')
+4
+3
+1
+0
+Loop ended.
+```
+
+- Break ifadesi, iç içe yazılmış döngülerde en yakın döngüyü kapatır.
+
+```python
+while <expr1>:
+    statement
+    statement
+
+    while <expr2>:
+        statement
+        statement
+        break  # Applies to while <expr2>: loop
+
+    break  # Applies to while <expr1>: loop
+```
+
 ## Sonsuz döngüler
 
 - Sonsuz döngüler genellikle tek başlarına kullanılmaz, break ifadesi ile birlikte kullanılırlar.
+- Çok nadir durumlarda, sonsuz döngüler break kullanılmadan yazılabilir.
+    - Örneğin bir sensör durumunun düzenli olarak okunup raporlanması
+    - Örneğin bir web sitesinin ayakta olup olmadığının düzenli araklıklarla kontrolü
 
 ```python
 >>> a = ['foo', 'bar', 'baz']
@@ -48,6 +96,19 @@ foo
 baz
 bar
 foo
+```
+
+```python
+import requests
+import time
+
+# Request to url until get 200 response
+# IMPORTANT: If server is down, the loop will never ends. Use "for" instead of "while"!
+while True:
+    r = requests.get("google.com")
+    if r.status_code == 200:
+        break
+    time.sleep(1)
 ```
 
 ## `else` ifadesi
@@ -72,7 +133,6 @@ else:
 ...     print(n)
 ... else:
 ...     print('Loop done.')
-...
 4
 3
 2
@@ -88,7 +148,6 @@ Loop done.
 ...     print(n)
 ... else:
 ...     print('Loop done.')
-...
 Loop done.
 ```
 
@@ -101,7 +160,6 @@ Loop done.
 ...         break
 ... else:
 ...     print('Loop done.')
-...
 4
 3
 2
@@ -113,6 +171,7 @@ Loop done.
 >>> a = ['foo', 'bar', 'baz', 'qux']
 >>> s = 'corge'
 
+# Search in list with using "while"
 >>> i = 0
 >>> while i < len(a):
 ...     if a[i] == s:
@@ -124,6 +183,40 @@ Loop done.
 ...     print(s, 'not found in list.')
 ...
 corge not found in list.
+
+# There are better ways to do that job...
+>>> if s in a:
+...     print(s, 'found in list.')
+... else:
+...     print(s, 'not found in list.')
+...
+corge not found in list.
+
+>>> try:
+...     print(a.index('corge'))
+... except ValueError:
+...     print(s, 'not found in list.')
+...
+corge not found in list.
+```
+
+- Yukarıda bahsettiğimiz örneğe `else` kullanarak hata denetimi ekleyebiliriz.
+
+```python
+import requests
+import time
+
+# Request to url until get 200 response
+# IMPORTANT: If server is down, the loop will never ends. Use "for" instead of "while"!
+a = 5
+while a != 0:
+    r = requests.get("google.com")
+    if r.status_code == 200:
+        break
+    time.sleep(1)
+    a -= 1
+else:
+    raise Exception("Invalid status code!")
 ```
 
 ## Tek sıra while ifadeleri
