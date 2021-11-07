@@ -179,6 +179,24 @@ StopIteration
 1
 ```
 
+- `next(<gen>, <defaul>)` fonksiyonuna ikinci bir parametre tanımlanabilir. Generator kapanmışsa (tüm elemanları döndürmüşse), `next()` fonksiyonu `StopIteration` hatası döndürmek yerine ikinci parametreyi döndürür.
+
+```python
+>>> a = (k for k in range(3))
+>>> next(a, None)
+0
+>>> next(a, None)
+1
+>>> next(a, None)
+2
+>>> next(a, None)
+>>> next(a, 1)
+1
+>>> a.close()
+>>> next(a, 1)
+1
+```
+
 - Generator içinde birden fazla `yield` kullanılabilir. Generator, her `yield` adımında durur ve sonucu döndürür.
 
 ```python
