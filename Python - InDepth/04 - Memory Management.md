@@ -120,12 +120,16 @@ True
 
 - Python üzerinde tanımlanan her değişkenin bir veri tipi vardır. Fakat python, değişkene farklı veri tiplerinde değerler atanmasına izin verir ve atama yapıldığında arka plandaki veri veri yapısını değiştirir.
 - Bir değişken tanımlandığında, öncelikli olarak o veri tipinden bir nesne oluşturulur ve değişken ismi o nesneye referans verilir.
-- Object Identity : Değişkenin referans aldığı yer, `id(<degisken>)` fonksiyonu ile öğrenilebilir.
+- Object Identity : Değişkenin referans aldığı objenin id değeri, `id(<degisken>)` fonksiyonu ile öğrenilebilir.
 
 ```python
 >>> type(300)
 <class 'int'>
 ```
+
+- Pythonda bir değişken oluşturulup değer atandığında,
+    - Öncelikle değerin tipine göre bir obje oluşturulur ve memory üzerinde adreslerek yazılır.
+    - Daha sonra değişken ismi bu obje id'sine referans olarak verilir.
 
 ```python
 >>> n = 300
@@ -133,7 +137,11 @@ True
 1743378752
 ```
 
+
+
 <p align="center"><img src="https://files.realpython.com/media/t.2d7bcb9afaaf.png" width="50%" /></p>
+
+- Aşağıdaki kodda olduğu gibi, bir değişken başka bir değişkene atandığında, değişkenin değeri kopyalanıp yeni bir obje oluşturulmaz. Her iki değişken de aynı objeye referans verir.
 
 ```python
 >>> m = n
@@ -143,7 +151,11 @@ True
 1743378752
 ```
 
+
+
 <p align="center"><img src="https://files.realpython.com/media/t.d368386b8423.png" width="50%" /></p>
+
+- Değişkenlerin değerleri değiştiğinde, **değişkenlerin referans aldığı objenin değeri değişmez!** Python memory üzerinde yeni bir obje oluşturur ve değişken artık bu objeye referans vermeye başlar. (Mutable ve immutable değer değişimlerinde durum aynıdır.)
 
 ```python
 >>> m = 400
@@ -153,7 +165,11 @@ True
 1743378752
 ```
 
+
+
 <p align="center"><img src="https://files.realpython.com/media/t.d476d91592cd.png" width="50%" /></p>
+
+- Her değer değişiminde yeni bir obje oluşturulur. Bir objeyi referans alan herhangi bir değişken kalmadığında, objenin yaşam döngüsü sonlanır ve Garbage Collector tarafından hafızadan silinir.
 
 ```python
 >>> n = "foo"
@@ -165,6 +181,66 @@ True
 
 - Değişkenin yaşam döngüsü, değişken bir değere referans olarak atandığında başlar, değerin referansı kalmadığında ise son bulur.
 - Bir değişkeni manuel olarak kaldırmak için `del <degisken_adi>` kullanılabilir.
+
+### Diğer dillerle kıyaslama
+
+```c
+#include <stdio.h>
+
+int x;
+char * foo;
+
+int main()
+{
+    x = 10;
+    printf("Ptr x : %p \n", &x);
+    
+    x = 20;
+    printf("Ptr x : %p \n", &x);
+    
+    foo = "bar";
+    printf("Ptr foo : %p \n", &foo);
+    
+    foo = "baz";
+    printf("Ptr foo : %p \n", &foo);
+    
+    return 0;
+}
+
+// Ptr x : 0x56497fb19018 
+// Ptr x : 0x56497fb19018 
+// Ptr foo : 0x56497fb19020 
+// Ptr foo : 0x56497fb19020
+```
+
+- Yukarıdaki örnekte olduğu gibi, C dilinde ilerleyiş şu şekildedir:
+    - Değişken `x`, spesifik bir hafıza adresini işaret eder.
+    - Bu adrese `10` değeri yazılır.
+    - Değişkene başka bir değer atandığında, adresteki `10` değeri üzerine `20` değeri yazılır.
+
+```python
+x = 10
+print(id(x))
+x = 20
+print(id(x))
+
+foo = "bar"
+print(id(foo))
+foo = "baz"
+print(id(foo))
+
+# ID x : 2061494928
+# ID x : 2061495088
+# ID foo : 59066528
+# ID foo : 59066592
+```
+
+- Pythonda ise durum şu şekide işler:
+    - `<class 'int'>` tipinde bir obje oluşturulur ve değer olarak `10` atanır.
+    - `x` değişkeni oluşturulan bu objeye referans verir.
+    - Yeni bir değer ataması yapıldığında, `<class 'int'>` tipinde ve değeri `20` olan yeni bir obje oluşturulur. 
+    - `x` değişkenini referans olarak yeni objenin referans değerini alır.
+    - Eski obje artık herhangi bir değişkenden referans almadığından `Garbage Collector` tarafından hafızadan silinir. 
 
 # Memory Optimization in Python Implementation
 
