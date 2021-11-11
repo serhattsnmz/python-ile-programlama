@@ -480,3 +480,22 @@ ValueError: 10 is not in list
 >>> l.count(10)
 0
 ```
+
+## Nested Lists
+
+- Listeler istenildiği kadar iç içe oluşturulabilir. 
+
+```python
+>>> l1 = [1,2,3]
+>>> l2 = [2,3,4]
+>>> l = [l1, l2, [5,6,7]]
+
+>>> l
+[[1, 2, 3], [2, 3, 4], [5, 6, 7]]
+
+>>> l[0][2]
+3
+
+>>> l[-1][-2]
+6
+```

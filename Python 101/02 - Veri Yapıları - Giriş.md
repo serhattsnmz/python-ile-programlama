@@ -23,7 +23,7 @@
 - Değişken isimlendirme kuralları : snake_case, PascalCase, camelCase, _private_tanim, GLOBAL_TANIM
     - Değişken ismi sayı ile başlayamaz
     - Değişken arasında boşluk olamaz
-    - Özel karakterler kullanılamaz.
+    - Özel karakterler kullanılamaz. (Sadece `_` kullanılabilir.)
     - Değişkenler, büyük-küçük harf duyarlıdır.
     - Python tarafından reserve edilen özel anahtar kelimeler değişken ismi olarak kullanılamaz. (while, not vs. )
         - Tüm listeye erişmek için : `help("keywords")`

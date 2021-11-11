@@ -77,3 +77,21 @@
 - VirualEnv kurulumu ve kullanımı
 - Debugging
 - PEP8 Kuralları 
+
+## Pythonda Yorum Satırı
+
+```python
+# Yorum satırı
+# Yorum satırı
+
+"Yorum satırı"
+
+'Yorum satırı'
+
+"""
+    Yorum satırı
+    Yorum satırı
+    Yorum satırı
+"""
+```
+
