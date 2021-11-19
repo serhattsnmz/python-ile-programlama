@@ -650,3 +650,203 @@ print(sub_pkg1)
 from ..sub_pkg1.mod1 import foo
 foo()
 ```
+
+## Using Pip
+
+- **Pip** : Python Package Manager. Çalışma ortamına yeni python paketleri yüklemeyi sağlar. 
+    - Yüklenebilecek paketlerin listesi şurdan bakılabilir: https://pypi.org/
+    - Pip yüklemesi ile ilgili ayrıntılı bilgi: https://pip.pypa.io/en/stable/
+- Bir bilgisayarda birden fazla pip sürümü olabilir. Genellikle Python2 ve Python3 için farklı, ve her versiyonu için farklı pip olabilir.
+
+```bash
+└─[$]> ls -la /usr/bin/ | grep -i pip
+-rwxr-xr-x  1 root root           941 Jul  1 23:44 pip
+-rwxr-xr-x  1 root root           943 Jul  1 23:44 pip3
+```
+
+- Pip versiyonu ve pip'in hangi python versiyonuna bağlı olduğunu `-v` ile öğrenebiliriz:
+
+```
+λ pip --version
+pip 21.3.1 from C:\Program Files\Python39\lib\site-packages\pip (python 3.9)
+
+λ python -m pip -V
+pip 21.3.1 from C:\Program Files\Python39\lib\site-packages\pip (python 3.9)
+```
+
+- Pip işlemleri
+
+```bash
+# Install packages with pip	
+λ pip install <package_name>
+
+# Install package to user install directory
+λ pip install <package_name> --user
+
+# Uninstall packages with pip
+λ pip unistall <package_name>
+
+# List downloaded packages
+λ pip list
+
+# Upgrade package
+λ pip install --upgrade <package_name>
+
+# Upgrade pip
+λ python -m pip install --upgrade pip
+
+# Show package metadata and details
+λ pip show <package_name>
+```
+
+- **NOT:** pip ile indirilen dosyalar aşağıdaki iki yoldan birine kaydedilir.
+    - Admin/root yetkisi ile indirilmişse;
+        - ` C:\Program Files\Python39\lib\site-packages`
+        - `/usr/lib/python3/dist-packages`
+    - `--user` parametresi ile indirilmişse;
+        - `C:\Users\serhat\AppData\Roaming\Python\Python39\site-packages`
+        - ` /home/serhat/.local/lib/python3.9/site-packages`
+    - `pip show <package_name>` ile indirilen paketin konumuna bakılabilir.
+    - Aşağıdaki python kodları ile de indirme konumlarına bakılabilir:
+
+```python
+>>> import site
+>>> site.getsitepackages()
+['C:\\Program Files\\Python39', 'C:\\Program Files\\Python39\\lib\\site-packages']
+>>> site.getusersitepackages()
+'C:\\Users\\serhat\\AppData\\Roaming\\Python\\Python39\\site-packages'
+```
+
+#### Requirements.txt File
+
+- pip ile indirilen paketler, projeyi çalıştıran bilgisayarın ilgili kayıt yerlerinde saklanır. Bir proje başka bir ortamda çalıştırılırsa aynı paketlerin o bilgisayara da indirilmesi gerekir.
+- Bunu kolaylaştırmak için projelere `requirements.txt` adlı bir dosya eklenir. (Dosya adı değişebilir ama genellikle herkes aynı ismi tercih eder.)
+- Dosya içine, her satıra bir paket ismi gelecek şekilde, projede kullanılacak kütüphaneler yazılır.
+
+```
+$ cat requirements.txt
+certifi
+chardet>=3.0
+idna==2.8
+requests==2.21.0
+urllib3==1.24.1
+```
+
+- Paket isimlerinin yanına versiyon numaraları verilebilir ve istenilirse `==, >, <, >=, <=` ifadelerinden biri de kullanılabilir.
+- Bir dosya içindeki paketler pip ile `-r` parametresi kullanılarak kolayca indirilebilir ve topluca kaldırılabilir.
+
+```
+$ pip install -r requirements.txt
+$ pip uninstall -r requirements.txt -y
+```
+
+- Tavsiye edilmese de, bir çalışma ortamında pip ile indirilen tüm paketlerin isimleri ve versiyonları `pip freeze` komutu kullanılarak bir dosyaya yazılabilir.
+
+```
+$ pip freeze > requirements.txt
+$ cat requirements.txt
+
+certifi==2018.11.29
+chardet==3.0.4
+idna==2.8
+requests==2.21.0
+urllib3==1.24.1
+```
+
+- Ayrıntılı bilgi için bkz: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+
+## Python Virtual Environments
+
+- Python virtual environment, default çalıştırma konumlarından izole bir python ortamı oluşturmamızdır.
+- PVE oluştururken, hem python programının kendisi için hem de pip için izole edilmiş farklı bir kopya oluşturulur ve pip ile indirilen paketler sadece bu ortam için indirilir.
+- PVE'a neden ihtiyaç duyarız;
+    - Bir proje için bağımsız bir ortam oluşturup projeye ait pip paketlerini ana bilgisayar ve başka projenin ortamlarından ayrı olarak oluşturabiliriz. Bu şekilde birden fazla proje aynı paketin farklı versiyonlarında çalışabilir.
+    - Bir proje için oluşturulan ortamda proje dışı pip paketleri olmayacağından `pip freeze` ile kolaylıkla `requirements.txt` dosyası oluşturulabilir.
+    - Farklı python sürümleri için farklı ortamlar oluşturup testler gerçekleştirebiliriz. Fakat bu python sürümlerinin ana bilgisayarda yüklü olması gerekir, çünkü ana python dosyaları ortam içine kopyalanır, ana bilgisayarda yoksa kopyalanma yapılamaz.
+- PVE oluşturmak için pip ile kurabildiğimiz `virtualenv` paketinden yararlanırız:
+
+```
+# Install (Linux)
+$ sudo pip3 install virtualenv
+
+# Install (Windows)
+λ pip install virtualenv
+
+# Create PVE (Windows & linux)
+λ virtualenv <env_path>
+```
+
+- PVE oluşturduktan sonra;
+    - `<env_name>/bin/activate`(linux) veya `<env_name>\Scripts\activate.bat` (windows) çalıştırılarak ortam aktifleştirilir.
+    - `deactivate`(linux) veya `deactivate.bat`(windows) komutu çalıştırılarak ortamdan çıkılır.
+
+```bash
+## Linux
+
+[$]> virtualenv env-linux
+created virtual environment CPython3.9.7.final.0-64 in 145ms
+...
+
+[$]> source env-linux/bin/activate
+
+[$](env-linux)> python -V
+Python 3.9.7
+
+[$](env-linux)> which python
+/home/serhat/Desktop/env-linux/bin/python
+
+[$](env-linux)> pip -V
+pip 21.3.1 from /home/serhat/Desktop/env-linux/lib/python3.9/site-packages/pip (python 3.9)
+
+[$](env-linux)> deactivate
+
+[$]> which python
+/usr/bin/python
+
+[$]> pip -V
+pip 20.3.4 from /usr/lib/python3/dist-packages/pip (python 3.9)
+```
+
+```
+## Windows
+
+λ virtualenv env-win
+created virtual environment CPython3.9.7.final.0-64 in 534ms
+...
+
+λ .\env-win\Scripts\activate.bat
+
+(env-win) λ python -V
+Python 3.9.7
+
+(env-win) λ which python
+/c/Users/serhat/Desktop/python-test/env-win/Scripts/python
+
+(env-win) λ pip -V
+pip 21.2.4 from C:\Users\serhat\Desktop\python-test\env-win\lib\site-packages\pip (python 3.9)
+
+(env-win) λ deactivate.bat
+
+λ which python
+/c/Program Files/Python39/python
+
+λ pip -V
+pip 21.3.1 from C:\Program Files\Python39\lib\site-packages\pip (python 3.9)
+```
+
+- PVE kurulduktan sonra pip ile yapılan tüm işlemler (indirme, kaldırma veya listeleme gibi) bu ortamda çalışır. Python ile çalıştırılan tüm dosyalar da **_sadece_** bu ortamdaki paketleri kullanır.
+
+- PVE ortamı aktifleştirildiğinde temel olarak iki işlem yapılır:
+    - `python` ve `pip` programları kopyalanır.
+    - Sistemin `PATH` değişkeni geçici olarak değiştirilir ve yeni ortam olarak ayarlanır.
+
+- PVE oluştururken farklı python versiyonları seçilebilir. Default olarak `python3` alias'ıyla temsil edilen python versiyonu seçilir.
+    - Python versiyonlarının ana sistemde yüklü olması gerekir.
+
+```
+λ virtualenv -p python3.5 env-win
+...
+λ virtualenv -p python3.9 env-win
+...
+```
+
