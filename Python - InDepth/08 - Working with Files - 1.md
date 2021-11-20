@@ -1,4 +1,4 @@
-# Working with Files in Python
+# Working with Files in Python - 1
 
 - Dosyalar, 
     - Bilgisayarın kalıcı hafızasında bilgi saklamaya yarayan ve içeriği byte'laradan oluşan veri kümeleridir.
