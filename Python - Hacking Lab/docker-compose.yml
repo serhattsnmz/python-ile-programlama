@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+
+  web-server:
+    container_name: web-server
+    build: web-server
+
+  nginx:
+    image: nginx:1.17
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./project-data/nginx-logs:/var/log/nginx
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/settings:/etc/nginx/settings
+    depends_on:
+      - web-server

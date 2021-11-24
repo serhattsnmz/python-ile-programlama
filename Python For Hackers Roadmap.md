@@ -1,0 +1,56 @@
+- Passive Recon
+    - Google üzerinden şirket maillerini toplama (requests, beautiful-soup)
+    - Whois bilgilerini öğrenme (whois)
+    - Social engineering (requests, API)
+
+- Active Scan
+    - Console komutlarını Python ile çalıştırma (subprocess)
+        - https://stackoverflow.com/a/92395/13177166
+
+    - Subfolder ve subdomain taraması (requests)
+        - Subfolder içeriğing .git dizin araması
+
+    - Cookie kopyalamayla Session Hijacking (requests)
+    - Headers, Robots.txt ve Sitemap.txt dosyaları kullanarak bilgi öğrenme (requests)
+    - Site kaynak kodlarından bilgi toplama (requests, Regex)
+        - Yorum satırları
+        - Github repo adresleri
+        - "Key", "flag", "hidden" ifadelerini araştırma
+        - Site içindeki mail adreslerini ve url adreslerini bulma
+
+    - Site form içeriklerine brute-force atakları gerçekleştirme (requests)
+    - Açık port taraması ve portlar hakkında bilgi alma (nmap)
+
+- System Resarch
+    - File search on a system (os.walk)
+    - Vulnerability test (Payloads on https://www.exploit-db.com/)
+
+- Backdoor
+    - Reverse shell oluşturma (socket)
+    - Http server oluşturma (http.server)
+    - Kalıcı web backdoor oluşturma (flask, flask-restful)
+
+- Cryptography
+    - Wordlist oluşturma
+    - Hash cracking (hash)
+    - Zip cracking (zipFile)
+
+- Defansive Security
+    - Dosya metadata bilgilerini öğrenme (file signature, dates, ext etc.) (os, file)
+    - File parsing (csv, json) (file)
+    - Online Malware scanning (virustotal, requests)
+    - Getting threat data and implamenting to Firewall (alienvault, requests, file)
+    - Monitoring Web Apps and IPs (ping, socket, requests)
+- Network
+    - Ağ trafiğini dinleme (socket)
+
+
+---
+
+- Tarama ve Sızma
+    - SQL information ve SQL injection taramaları
+    - Python ile FTP ve SSH erişimi sağlama
+    - Bruteforce uygulama ve bruteforce için wordlist üretimi
+    - python keylogger
+    - python telnet
+
