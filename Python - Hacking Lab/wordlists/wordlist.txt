@@ -1,0 +1,13 @@
+admin
+www
+test
+secret
+api
+about
+example
+route
+dev
+profile
+login
+chbin
+s3cr3tP4ss

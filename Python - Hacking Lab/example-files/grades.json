@@ -1,0 +1,177 @@
+[
+    {
+        "Last name": "Alfalfa",
+        "First name": "Aloysius",
+        "SSN": "123-45-6789",
+        "Test1": "40.0",
+        "Test2": "90.0",
+        "Test3": "100.0",
+        "Test4": "83.0",
+        "Final": "49.0",
+        "Grade": "D-"
+    },
+    {
+        "Last name": "Alfred",
+        "First name": "University",
+        "SSN": "123-12-1234",
+        "Test1": "41.0",
+        "Test2": "97.0",
+        "Test3": "96.0",
+        "Test4": "97.0",
+        "Final": "48.0",
+        "Grade": "D+"
+    },
+    {
+        "Last name": "Gerty",
+        "First name": "Gramma",
+        "SSN": "567-89-0123",
+        "Test1": "41.0",
+        "Test2": "80.0",
+        "Test3": "60.0",
+        "Test4": "40.0",
+        "Final": "44.0",
+        "Grade": "C"
+    },
+    {
+        "Last name": "Android",
+        "First name": "Electric",
+        "SSN": "087-65-4321",
+        "Test1": "42.0",
+        "Test2": "23.0",
+        "Test3": "36.0",
+        "Test4": "45.0",
+        "Final": "47.0",
+        "Grade": "B-"
+    },
+    {
+        "Last name": "Bumpkin",
+        "First name": "Fred",
+        "SSN": "456-78-9012",
+        "Test1": "43.0",
+        "Test2": "78.0",
+        "Test3": "88.0",
+        "Test4": "77.0",
+        "Final": "45.0",
+        "Grade": "A-"
+    },
+    {
+        "Last name": "Rubble",
+        "First name": "Betty",
+        "SSN": "234-56-7890",
+        "Test1": "44.0",
+        "Test2": "90.0",
+        "Test3": "80.0",
+        "Test4": "90.0",
+        "Final": "46.0",
+        "Grade": "C-"
+    },
+    {
+        "Last name": "Noshow",
+        "First name": "Cecil",
+        "SSN": "345-67-8901",
+        "Test1": "45.0",
+        "Test2": "11.0",
+        "Test3": "-1.0",
+        "Test4": "4.0",
+        "Final": "43.0",
+        "Grade": "F"
+    },
+    {
+        "Last name": "Buff",
+        "First name": "Bif",
+        "SSN": "632-79-9939",
+        "Test1": "46.0",
+        "Test2": "20.0",
+        "Test3": "30.0",
+        "Test4": "40.0",
+        "Final": "50.0",
+        "Grade": "B+"
+    },
+    {
+        "Last name": "Airpump",
+        "First name": "Andrew",
+        "SSN": "223-45-6789",
+        "Test1": "49.0      1.0",
+        "Test2": "90.0",
+        "Test3": "100.0",
+        "Test4": "83.0",
+        "Final": "A"
+    },
+    {
+        "Last name": "Backus",
+        "First name": "Jim",
+        "SSN": "143-12-1234",
+        "Test1": "48.0",
+        "Test2": "1.0",
+        "Test3": "97.0",
+        "Test4": "96.0",
+        "Final": "97.0",
+        "Grade": "A+"
+    },
+    {
+        "Last name": "Carnivore",
+        "First name": "Art",
+        "SSN": "565-89-0123",
+        "Test1": "44.0",
+        "Test2": "1.0",
+        "Test3": "80.0",
+        "Test4": "60.0",
+        "Final": "40.0",
+        "Grade": "D+"
+    },
+    {
+        "Last name": "Dandy",
+        "First name": "Jim",
+        "SSN": "087-75-4321",
+        "Test1": "47.0",
+        "Test2": "1.0",
+        "Test3": "23.0",
+        "Test4": "36.0",
+        "Final": "45.0",
+        "Grade": "C+"
+    },
+    {
+        "Last name": "Elephant",
+        "First name": "Ima",
+        "SSN": "456-71-9012",
+        "Test1": "45.0",
+        "Test2": "1.0",
+        "Test3": "78.0",
+        "Test4": "88.0",
+        "Final": "77.0",
+        "Grade": "B-"
+    },
+    {
+        "Last name": "Franklin",
+        "First name": "Benny",
+        "SSN": "234-56-2890",
+        "Test1": "50.0",
+        "Test2": "1.0",
+        "Test3": "90.0",
+        "Test4": "80.0",
+        "Final": "90.0",
+        "Grade": "B-"
+    },
+    {
+        "Last name": "George",
+        "First name": "Boy",
+        "SSN": "345-67-3901",
+        "Test1": "40.0",
+        "Test2": "1.0",
+        "Test3": "11.0",
+        "Test4": "-1.0",
+        "Final": "4.0",
+        "Grade": "B"
+    },
+    {
+        "Last name": "Heffalump",
+        "First name": "Harvey",
+        "SSN": "632-79-9439",
+        "Test1": "30.0",
+        "Test2": "1.0",
+        "Test3": "20.0",
+        "Test4": "30.0",
+        "Final": "40.0",
+        "Grade": "C"
+    }
+]

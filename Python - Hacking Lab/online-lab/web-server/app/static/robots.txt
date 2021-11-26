@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /aboout
+Disallow: /admin
+Disallow: /secret
+Sitemap: http://serhatsonmez.net/sitemap.xml
