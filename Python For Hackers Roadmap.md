@@ -16,7 +16,9 @@
         - Site içindeki mail adreslerini ve url adreslerini bulma
     - Site form içeriklerine brute-force atakları gerçekleştirme (requests)
     - Açık port taraması ve portlar hakkında bilgi alma (nmap)
-    - SQL information ve SQL injection taramaları
+    - SQL bağlantısı ve SQL brute-force (psycopg2, postgresql)
+    - Form içinde SQL injection taramaları (requests, postgresql)
+    - FTP brute-force (ftplib)
 - System Resarch
     - File search on a system (os.walk)
     - Vulnerability test (Payloads on https://www.exploit-db.com/)
@@ -38,15 +40,4 @@
     - Monitoring Web Apps and IPs (ping, socket, requests)
 - Extra
     - Web API ile Firewall beslemesi (Flask, Peewee, Postgres)
-
-
-
----
-
-- Network
-    - Ağ trafiğini dinleme (socket)
-- Tarama ve Sızma
-    - Python ile FTP ve SSH erişimi sağlama
-    - python keylogger
-    - python telnet
 

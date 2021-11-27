@@ -38,3 +38,17 @@ services:
       ADMINER_DESIGN: flat
     depends_on:
       - database
+
+  ftp-server:
+    container_name: ftp
+    image: drakkan/sftpgo
+    ports:
+      - "8080:8080"
+      - "2022:2022"
+      - "2121:2121"
+      - "50000-50100:50000-50100"
+    environment:
+      - SFTPGO_FTPD__BINDINGS__0__PORT=2121
+    volumes:
+      - ./project-data/sftgo/data:/srv/sftpgo
+      - ./project-data/sftgo/home:/var/lib/sftpgo
