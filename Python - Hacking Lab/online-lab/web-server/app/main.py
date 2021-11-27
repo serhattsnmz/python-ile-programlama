@@ -1,5 +1,6 @@
 import sys
 from flask import Flask, render_template, Response, request,redirect
+import psycopg2
 
 app = Flask(__name__, static_folder="static", static_url_path="", template_folder="templates")
 
@@ -53,6 +54,32 @@ def login():
             IS_LOGIN = True
             return redirect("/profile")
         return redirect("/login")
+
+@app.route("/login2", methods=["GET", "POST"])
+def login2():
+    if request.method == "GET":
+        return render_template("login.html")
+    elif request.method == "POST":
+        username = request.form.get("username") 
+        password = request.form.get("password")
+
+        connection = psycopg2.connect(
+            user = "postgres",
+            password = "password",
+            host = "database",
+            port = "5432",
+            database = "main"
+        )
+
+        cursor = connection.cursor()
+        cursor.execute(f"""select count(id) from "user" where "name"='{username}' and "password"='{password}';""")
+        count = cursor.fetchone()[0]
+
+        if count > 0:
+            global IS_LOGIN
+            IS_LOGIN = True
+            return redirect("/profile")
+        return redirect("/login2")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,6 @@
+postgres
 admin
+password
 www
 test
 secret

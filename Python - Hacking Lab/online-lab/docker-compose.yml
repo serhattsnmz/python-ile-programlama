@@ -17,3 +17,24 @@ services:
       - ./nginx/settings:/etc/nginx/settings
     depends_on:
       - web-server
+
+  database:
+    container_name: postgres
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+    volumes:
+      - ./database-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - "9001:8080"
+    environment: 
+      ADMINER_DESIGN: flat
+    depends_on:
+      - database

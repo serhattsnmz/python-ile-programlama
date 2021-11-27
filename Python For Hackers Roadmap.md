@@ -16,6 +16,7 @@
         - Site içindeki mail adreslerini ve url adreslerini bulma
     - Site form içeriklerine brute-force atakları gerçekleştirme (requests)
     - Açık port taraması ve portlar hakkında bilgi alma (nmap)
+    - SQL information ve SQL injection taramaları
 - System Resarch
     - File search on a system (os.walk)
     - Vulnerability test (Payloads on https://www.exploit-db.com/)
@@ -26,8 +27,8 @@
     - Linux service ve cronjob ile düzenli python script çalıştırma
 - Cryptography
     - Wordlist oluşturma
-    - Hash cracking (hash)
-    - Zip cracking (zipFile)
+    - Hash cracking with brute-force (hash)
+    - Zip cracking with brute-force(zipFile)
 - Defansive Security
     - Dosya metadata bilgilerini öğrenme (file signature, dates, ext etc.) (os, file)
     - File parsing (csv, json, txt) (file)
@@ -35,8 +36,6 @@
     - SMTP ile email gönderme (smtplib)
     - Getting threat data and implamenting to Firewall (alienvault, requests, file)
     - Monitoring Web Apps and IPs (ping, socket, requests)
-- Network
-    - Ağ trafiğini dinleme (socket)
 - Extra
     - Web API ile Firewall beslemesi (Flask, Peewee, Postgres)
 
@@ -44,10 +43,10 @@
 
 ---
 
+- Network
+    - Ağ trafiğini dinleme (socket)
 - Tarama ve Sızma
-    - SQL information ve SQL injection taramaları
     - Python ile FTP ve SSH erişimi sağlama
-    - Bruteforce uygulama ve bruteforce için wordlist üretimi
     - python keylogger
     - python telnet
 
