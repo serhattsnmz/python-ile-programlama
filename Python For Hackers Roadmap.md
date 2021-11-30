@@ -38,6 +38,8 @@
     - SMTP ile email gönderme (smtplib)
     - Getting threat data and implamenting to Firewall (alienvault, requests, file)
     - Monitoring Web Apps and IPs (ping, socket, requests)
-- Extra
-    - Web API ile Firewall beslemesi (Flask, Peewee, Postgres)
+- Projeler
+    - Basit OSINT Tool
+    - Firewall beslemesi yapan Web API (Flask, Peewee, Postgres)
+
 
